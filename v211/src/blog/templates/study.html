@@ -1,0 +1,26 @@
+{%extends 'base.html' %}
+
+{% block body1%}
+<h3 class="text-muted font-italic mx-3 pb-2 border-bottom">여행</h3>
+
+<div class='container pt-3'>
+<div class ='table-responsive'>
+	<table class ='table table-bordered table-hover text-center'>
+		<thead class='thead-light'>
+			<tr>
+				<th class='w-75' scope='col'>제목</th>
+				<th class='w-25'scope='col'>작성자</th>
+			</tr>
+		</thead>
+		<tbody>
+	  	{%for i in study%}
+		<tr>
+			<th><a href='{%url 'blog:studydetail' i.id%}'>{{i.headline}}</a></th>
+			<th>{{i.author}}</th>
+		</tr>
+		{% endfor%}	
+		</tbody>	
+	</table>
+</div>
+</div>
+{%endblock%}

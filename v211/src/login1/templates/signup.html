@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body1%}
+<h2>회원가입</h2>
+
+{%if error %}
+	{{error}}
+{%endif%}	
+<br>
+<form class='form-inline' actoin='' method='POST'>
+	{%csrf_token%}
+	{{form.as_p}}
+	<input type='submit' value='제출'>
+</form>	
+	
+{%endblock%}

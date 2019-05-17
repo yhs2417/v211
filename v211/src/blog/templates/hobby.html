@@ -1,0 +1,71 @@
+{%extends 'base.html' %}
+
+{% block body1%}
+
+
+
+<div class='container-fruid mx-5'>
+<div class='card-columns'>
+	{%for i in post_data %}
+		<div class="card">
+			{% for j in i.image_set.all %}	
+				{% if forloop.counter == 1 %}
+					<img class='card-img-top img-thumbnail' src='{{j.image.url}}'>
+				
+				{%endif%}	
+			{%endfor%}	
+				
+				<div class='card-body'>
+					<h5 class='card-title'>{{i.headline}}</h5>
+					({{i.pub_date}}) 
+					<br><br>
+					<button class='btn btn-default' data-toggle='modal' data-target='#modal{{i.id}}'>
+					자세히
+					</button>
+				</div>
+				
+				<div class='modal fade' id='modal{{i.id}}' role='dialog'>
+					<div class='modal-dialog modal-dialog-centered modal-lg'>
+						<div class='modal-content'>
+							<div class='modal-header'>
+								<h4 class='modal-title'>{{i.headline}}</h4>
+								<button type='button' class='close' data-dismiss='modal'>
+								<span aria-hidden="true">&times;</span>
+								</button>
+				
+							</div>
+							<div class='modal-body'>
+								<h6 class='text-right'>(게시일 : {{i.pub_date}})</h6><br>
+								
+								<div class='container'>
+									<div class='row'>
+										<div class='col-md-4'>
+											{%for j in i.image_set.all%}
+												
+											<img class='img-thumbnail' width=100% src='{{j.image.url}}'><br>
+												
+											{%endfor%}
+											</div>
+										<div class='col-md-8'>
+										{{i.content|linebreaksbr}}
+										</div>
+									</div>
+							
+								</div>		
+											
+							</div>
+								<div class='modal-footer'>
+									<button type='button' class='btn btn-default' data-dismiss='modal'>닫기</button>
+								</div>
+							</div>
+						</div>
+					</div>	
+			</div>
+			{%endfor%}
+</div>
+
+</div>	
+
+
+{%endblock%}
+

@@ -1,0 +1,69 @@
+{%extends 'base.html' %}
+
+{%block body1%}
+
+<h3 class="text-muted font-italic mx-4 pb-2 border-bottom">성취일기</h3>
+
+      
+        
+<div class='container-fruid px-5 pt-5' id="index" >
+	 
+	<div id="carousel1" class="carousel slide carousel-fade" >
+    	
+    	<div class="text-center" >
+   			<a href="#carousel1" role="button" data-slide="prev">
+       			<i class="fas fa-angle-left fa-2x text-body"></i>
+    		</a>
+    		<h3 class="d-inline px-4" id='num'></h3> 
+   			<a  href="#carousel1" role="button" data-slide="next">
+    			<i class="fas fa-angle-right fa-2x text-body"></i>
+   			</a>
+   		</div>
+   
+    	<div class="carousel-inner px-5 pt-4">
+    	{%for j in months%}
+    	 	{% ifequal forloop.counter 5 %}
+    		<div class="carousel-item active" id="1234">
+    		{%else%}
+    		<div class="carousel-item" id="1234">
+    		{%endifequal%}
+        	{%for i in j %}
+        	 
+        	<div class="row py-2">
+        
+        	<div class="col-sm-2 col-md-1 border border-danger text-center" >
+        		<h4 class="my-3"> 
+        		<script >document.write("{{i.headline}}".substr(-5)+"일") 
+        		</script>
+        		</h4> 
+        	</div>
+        	
+        	<div class="col-sm-9 col-md-9 border 
+        	border-danger offset-md-2 offset-sm-1 text-center ">
+        		<h4 class="my-3">{{i.content|linebreaksbr}} </h4>
+        	</div>
+        	</div>
+	  		{%endfor%} 
+      		</div>
+      		 {%endfor%}
+    		</div>
+  		</div>
+  	</div>
+  	
+  	<script>
+  	$('#num').html($('.carousel-item.active').index()+1 +" 월")
+  	
+	var totalItems = $('.carousel-item').length;
+	var currentIndex = $('.carousel-item.active').index() + 1;
+
+	$('#carousel1').on('slid.bs.carousel', function()
+	{
+	    currentIndex = $('.carousel-item.active').index()+1;
+	    interval :99999999 
+   	 	$('#num').html(''+currentIndex+' 월');
+	});
+	</script>
+ 	
+</div>
+ 
+{%endblock%}
